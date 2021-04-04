@@ -1,29 +1,38 @@
 import * as React from "react"
-import { Link } from "gatsby"
-import { StaticImage } from "gatsby-plugin-image"
+// import { Link } from "gatsby"
+import { Box, SimpleGrid } from "@chakra-ui/react"
 
+import { data } from "../data"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
+import AddButton from "../components/addButton"
+import Character from "../components/character"
 
-const IndexPage = () => (
-  <Layout>
-    <SEO title="Home" />
-    <h1>Hi people</h1>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
-    <StaticImage
-      src="../images/gatsby-astronaut.png"
-      width={300}
-      quality={95}
-      formats={["AUTO", "WEBP", "AVIF"]}
-      alt="A Gatsby astronaut"
-      style={{ marginBottom: `1.45rem` }}
-    />
-    <p>
-      <Link to="/page-2/">Go to page 2</Link> <br />
-      <Link to="/using-typescript/">Go to "Using TypeScript"</Link>
-    </p>
-  </Layout>
-)
+const IndexPage = props => {
+  const characterList = data.map(i => (
+    <Box
+      key={i.id}
+      maxW="sm"
+      borderWidth="1px"
+      borderRadius="lg"
+      overflow="hidden"
+    >
+      <Character data={i} />
+    </Box>
+  ))
+
+  return (
+    <Layout>
+      <SEO title="Home" />
+      {/* <h1>Characters</h1> */}
+      <SimpleGrid columns={[1, 2, 3]} spacing={10}>
+        {characterList}
+      </SimpleGrid>
+      <Box position="fixed" bottom="1rem" right="1rem">
+        <AddButton colorScheme={"green"} />
+      </Box>
+    </Layout>
+  )
+}
 
 export default IndexPage

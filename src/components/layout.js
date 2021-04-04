@@ -11,17 +11,42 @@ import { useStaticQuery, graphql } from "gatsby"
 
 import Header from "./header"
 import "./layout.css"
+// import { Center } from "@chakra-ui/layout"
 
+// const Layout = props => {
 const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`
-    query SiteTitleQuery {
+    query {
       site {
         siteMetadata {
           title
         }
       }
+      ram {
+        characters(page: 3) {
+          info {
+            count
+          }
+          results {
+            id
+            name
+            image
+            status
+            gender
+            origin {
+              name
+            }
+            location {
+              name
+            }
+          }
+        }
+      }
     }
   `)
+
+  // const { results } = data.ram.characters
+  // console.log(results)
 
   return (
     <>
@@ -37,6 +62,9 @@ const Layout = ({ children }) => {
         <footer
           style={{
             marginTop: `2rem`,
+            // margin: `2rem auto 0`,
+            textAlign: `center`,
+            color: `gray`,
           }}
         >
           © {new Date().getFullYear()}, Built with
