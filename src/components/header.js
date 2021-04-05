@@ -1,8 +1,8 @@
 import * as React from "react"
 import PropTypes from "prop-types"
 import { Link } from "gatsby"
-import { Center, Flex, Spacer, Box, IconButton } from "@chakra-ui/react"
-import { InfoIcon } from "@chakra-ui/icons"
+import { Center, Flex, Box } from "@chakra-ui/react"
+import About from "./about"
 
 const Header = ({ siteTitle }) => (
   <header
@@ -27,17 +27,7 @@ const Header = ({ siteTitle }) => (
           </h1>
         </Box>
         <Box py="4" px="1">
-          <IconButton
-            color={`white`}
-            rightIcon={<InfoIcon />}
-            // colorScheme={"green"}
-            position="relative"
-            top="-2px"
-            isRound={true}
-            aria-label="About"
-            size="xs"
-            variant="link"
-          />
+          <About />
         </Box>
       </Flex>
     </Center>
