@@ -4,10 +4,8 @@ import {
   ModalOverlay,
   ModalContent,
   ModalHeader,
-  //   ModalFooter,
   ModalBody,
   ModalCloseButton,
-  //   Button,
   IconButton,
   useDisclosure,
   UnorderedList,
@@ -56,13 +54,6 @@ export default function About() {
               data pulled from rickandmortyapi.com
             </Text>
           </ModalBody>
-
-          {/* <ModalFooter>
-            <Button colorScheme="blue" mr={3} onClick={onClose}>
-              Close
-            </Button>
-            <Button variant="ghost">Secondary Action</Button>
-          </ModalFooter> */}
         </ModalContent>
       </Modal>
     </>

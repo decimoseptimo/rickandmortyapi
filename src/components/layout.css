@@ -600,7 +600,6 @@ pre tt:after {
   display: inline-block;
   height: 0.5rem;
   width: 0.5rem;
-  margin-right: 0.375rem;
   background: rgb(158, 158, 158);
   border-radius: 50%;
 }
@@ -609,4 +608,29 @@ pre tt:after {
 }
 .status-icon.dead {
   background: rgb(214, 61, 46);
+}
+
+/* ReactModal */
+
+.ReactModal__Overlay {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  width: 100vw;
+  height: 100vh;
+  background: var(--chakra-colors-blackAlpha-600);
+  z-index: var(--chakra-zIndices-modal);
+  opacity: 0;
+  transition: opacity 0.2s ease-out;
+}
+
+.ReactModal__Overlay--after-open {
+  opacity: 1;
+}
+
+.ReactModal__Content:focus {
+  outline: 0;
 }
