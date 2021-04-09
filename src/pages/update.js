@@ -1,25 +1,20 @@
-import React, { useEffect, useState } from "react"
+import React from "react"
 import { navigate } from "gatsby"
 import { ModalRoutingContext } from "gatsby-plugin-modal-routing-3"
 import { Box } from "@chakra-ui/react"
+import { connect } from "react-redux"
 
 import { CharacterUpdate } from "../components/character"
+import { getItem, UPDATE_ITEM } from "../state/state"
 
-const Update = () => {
-  const [id, setId] = useState(null)
-
-  useEffect(() => {
-    const params = new URLSearchParams(window.location.search)
-    setId(params?.get("id"))
-  })
-
+const Update = ({ item, onSubmit }) => {
   const ModalContent = () => (
     <Box width="400px" padding="2rem" background="#fff" rounded="sm">
-      {id ? (
+      {item.id ? (
         <CharacterUpdate
-          id={id}
-          onSave={() => alert("DISABLED")}
-          onCancel={() => navigate(-1)}
+          data={item}
+          onSubmit={onSubmit}
+          onClose={() => navigate(-1)}
         />
       ) : (
         "Invalid ID"
@@ -36,4 +31,19 @@ const Update = () => {
   )
 }
 
-export default Update
+function mapState(state, ownProps) {
+  const params = new URLSearchParams(ownProps.location.search)
+  const id = params.get("id")
+
+  return { item: getItem(state, id) }
+}
+
+function mapDispatch(dispatch) {
+  return {
+    onSubmit(item) {
+      dispatch({ type: UPDATE_ITEM, item })
+    },
+  }
+}
+
+export default connect(mapState, mapDispatch)(Update)

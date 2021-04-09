@@ -1,14 +1,14 @@
 import * as React from "react"
 import { Link } from "gatsby-plugin-modal-routing-3"
 import { Box, SimpleGrid } from "@chakra-ui/react"
+import { connect } from "react-redux"
 
-import { data } from "../data"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import AddButton from "../components/addButton"
 import { CharacterView } from "../components/character"
 
-const IndexPage = props => {
+const IndexPage = ({ data }) => {
   const characterList = data.map(i => (
     <Box
       key={i.id}
@@ -36,4 +36,8 @@ const IndexPage = props => {
   )
 }
 
-export default IndexPage
+function mapState(state) {
+  return { data: state }
+}
+
+export default connect(mapState)(IndexPage)

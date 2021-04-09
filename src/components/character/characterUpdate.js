@@ -1,14 +1,14 @@
 import React from "react"
 
-import UpdateForm from "./updateForm"
+import CharacterForm from "./characterForm"
 
-export default function CharacterUpdate({ id, onSave, onCancel }) {
+export default function CharacterUpdate({ data, onSubmit, onClose }) {
   return (
-    <UpdateForm
-      id={id}
-      title={`Update Character #${id}`}
-      onSave={onSave}
-      onCancel={onCancel}
+    <CharacterForm
+      title={`Update Character #${data.id}`}
+      data={data}
+      onSubmit={onSubmit}
+      onClose={onClose}
     />
   )
 }

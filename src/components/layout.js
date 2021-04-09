@@ -11,7 +11,6 @@ import { useStaticQuery, graphql } from "gatsby"
 
 import Header from "./header"
 import "./layout.css"
-// import { Center } from "@chakra-ui/layout"
 
 // const Layout = props => {
 const Layout = ({ children }) => {
@@ -22,31 +21,8 @@ const Layout = ({ children }) => {
           title
         }
       }
-      ram {
-        characters(page: 3) {
-          info {
-            count
-          }
-          results {
-            id
-            name
-            image
-            status
-            gender
-            origin {
-              name
-            }
-            location {
-              name
-            }
-          }
-        }
-      }
     }
   `)
-
-  // const { results } = data.ram.characters
-  // console.log(results)
 
   return (
     <>
