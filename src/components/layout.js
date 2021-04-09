@@ -21,26 +21,6 @@ const Layout = ({ children }) => {
           title
         }
       }
-      ram {
-        characters(page: 2) {
-          info {
-            count
-          }
-          results {
-            id
-            name
-            image
-            status
-            gender
-            origin {
-              name
-            }
-            location {
-              name
-            }
-          }
-        }
-      }
     }
   `)
 

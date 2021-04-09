@@ -1,16 +1,17 @@
 import * as React from "react"
 import { Link } from "gatsby-plugin-modal-routing-3"
 import { Box, SimpleGrid } from "@chakra-ui/react"
+import { connect } from "react-redux"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import AddButton from "../components/addButton"
 import { CharacterView } from "../components/character"
 
-const IndexPage = props => {
-  const data = {}
-  const { results: data2 } = data.ram.characters
-  const characterList = data2.map(i => (
+const IndexPage = ({ data }) => {
+  // const data = {}
+  // const { results: data2 } = data.ram.characters
+  const characterList = data.map(i => (
     <Box
       key={i.id}
       maxW="sm"
@@ -37,4 +38,16 @@ const IndexPage = props => {
   )
 }
 
-export default IndexPage
+function mapState(state) {
+  return { data: state }
+}
+
+// function mapDispatch(dispatch) {
+//   return {
+//     onMessageClick(message) {
+//       dispatch({ type: "click", message })
+//     },
+//   }
+// }
+
+export default connect(mapState /* , mapDispatch */)(IndexPage)

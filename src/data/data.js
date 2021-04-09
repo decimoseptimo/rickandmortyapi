@@ -1,4 +1,4 @@
-const data = async () => {
+const data = async (page=1) => {
   const response = await fetch("https://rickandmortyapi.com/graphql", {
     method: "POST",
     headers: {
@@ -7,7 +7,7 @@ const data = async () => {
     },
     body: JSON.stringify({
       query: `query {
-        characters(page: 2) {
+        characters(page: ${page}) {
           info {
             count
           }
