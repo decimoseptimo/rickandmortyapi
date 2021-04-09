@@ -1,45 +1,13 @@
 import React from "react"
-// import { createStore } from "redux"
-// import { Provider } from "react-redux"
-import { graphql, StaticQuery } from "gatsby"
+import { Provider } from "react-redux"
 
-// import { reducer } from "./src/state/createStore"
-// import { createStore } from "./src/state/createStore"
+import { createStore } from "./src/state/createStore"
 
-export default ({ element }) => (
-  <StaticQuery
-    query={graphql`
-    query {
-      site {
-        siteMetadata {
-          title
-        }
-      }
-      ram {
-        characters(page: 2) {
-          info {
-            count
-          }
-          results {
-            id
-            name
-            image
-            status
-            gender
-            origin {
-              name
-            }
-            location {
-              name
-            }
-          }
-        }
-      }
-    }
-    `}
-    render={data => {
-      // return <Provider store={createStore(reducer, data)}>{element}</Provider>
-      return { element }
-    }}
-  />
-)
+// export default ({ element }) => (
+//   <Provider store={createStore()}>{element}</Provider>
+// )
+export default ({ element }) => {
+  const store = createStore()
+  console.log(store)
+  return <Provider store={store}>{element}</Provider>
+}

@@ -1,4 +1,5 @@
 import { createStore as reduxCreateStore } from "redux"
+import data from "../data/data"
 
 export const reducer = (state, action) => {
   if (action.type === `INCREMENT`) {
@@ -9,7 +10,13 @@ export const reducer = (state, action) => {
   return state
 }
 
-const initialState = { count: 0 }
+export const createStore = async () => {
+    //TODO: catch errors
+  const {
+    data: {
+      characters: { results },
+    },
+  } = await data()
 
-const createStore = () => reduxCreateStore(reducer, initialState)
-export default createStore
+  return reduxCreateStore(reducer, results)
+}

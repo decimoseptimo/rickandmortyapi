@@ -11,7 +11,6 @@ import { useStaticQuery, graphql } from "gatsby"
 
 import Header from "./header"
 import "./layout.css"
-// import { Center } from "@chakra-ui/layout"
 
 // const Layout = props => {
 const Layout = ({ children }) => {
