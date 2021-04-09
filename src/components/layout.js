@@ -23,7 +23,7 @@ const Layout = ({ children }) => {
         }
       }
       ram {
-        characters(page: 3) {
+        characters(page: 2) {
           info {
             count
           }
@@ -44,9 +44,6 @@ const Layout = ({ children }) => {
       }
     }
   `)
-
-  // const { results } = data.ram.characters
-  // console.log(results)
 
   return (
     <>
