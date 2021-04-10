@@ -10,7 +10,9 @@ import {
   VStack,
 } from "@chakra-ui/react"
 
-export default function UpdateForm({ id, title, onSave, onCancel }) {
+export default function UpdateForm({ id, data, title, onSave, onCancel }) {
+  const { name, image, status, gender, origin, location } = data
+
   return (
     <Box>
       <Heading size="md" pb={2}>
@@ -20,27 +22,27 @@ export default function UpdateForm({ id, title, onSave, onCancel }) {
         <VStack spacing={2} align="stretch">
           <Box>
             <FormLabel>Name</FormLabel>
-            <Input id="Name" placeholder="Name" />
+            <Input id="Name" placeholder="Name" value={name} onChange={()=>null} />
           </Box>
           <Box>
             <FormLabel>Image</FormLabel>
-            <Input id="Image" placeholder="Image" />
+            <Input id="Image" placeholder="Image" value={image} onChange={()=>null} />
           </Box>
           <Box>
             <FormLabel>Status</FormLabel>
-            <Input id="Status" placeholder="Status" />
+            <Input id="Status" placeholder="Status" value={status} onChange={()=>null} />
           </Box>
           <Box>
             <FormLabel>Gender</FormLabel>
-            <Input id="Gender" placeholder="Gender" />
+            <Input id="Gender" placeholder="Gender" value={gender} onChange={()=>null} />
           </Box>
           <Box>
             <FormLabel>Origin</FormLabel>
-            <Input id="Origin" placeholder="Origin" />
+            <Input id="Origin" placeholder="Origin" value={origin.name} onChange={()=>null} />
           </Box>
           <Box>
             <FormLabel>Location</FormLabel>
-            <Input id="Location" placeholder="Location" />
+            <Input id="Location" placeholder="Location" value={location.name} onChange={()=>null} />
           </Box>
         </VStack>
       </FormControl>

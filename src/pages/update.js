@@ -2,15 +2,17 @@ import React, { useEffect, useState } from "react"
 import { navigate } from "gatsby"
 import { ModalRoutingContext } from "gatsby-plugin-modal-routing-3"
 import { Box } from "@chakra-ui/react"
+import { connect } from "react-redux"
 
 import { CharacterUpdate } from "../components/character"
+import { getItem } from "../state/state"
 
-const Update = () => {
+const Update = ({ item }) => {
+  console.log(item)
   const [id, setId] = useState(null)
 
   useEffect(() => {
-    const params = new URLSearchParams(window.location.search)
-    setId(params?.get("id"))
+    setId(item.id)
   })
 
   const ModalContent = () => (
@@ -18,6 +20,7 @@ const Update = () => {
       {id ? (
         <CharacterUpdate
           id={id}
+          data={item}
           onSave={() => alert("DISABLED")}
           onCancel={() => navigate(-1)}
         />
@@ -36,4 +39,19 @@ const Update = () => {
   )
 }
 
-export default Update
+function mapState(state, ownProps) {
+  const params = new URLSearchParams(ownProps.location.search)
+  const id = params.get("id")
+
+  return { item: getItem(state, id) }
+}
+
+function mapDispatch(dispatch) {
+  return {
+    onMessageClick(message) {
+      dispatch({ type: "click", message })
+    },
+  }
+}
+
+export default connect(mapState, mapDispatch)(Update)
