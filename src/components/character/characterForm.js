@@ -30,9 +30,6 @@ export default function CharacterForm({
     onClose()
   }
 
-  console.log(data)
-  console.log(origin)
-  console.log(originName)
   return (
     <Box>
       <Heading size="md" pb={2}>

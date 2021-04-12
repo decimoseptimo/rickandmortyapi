@@ -9,8 +9,6 @@ import AddButton from "../components/addButton"
 import { CharacterView } from "../components/character"
 
 const IndexPage = ({ data }) => {
-  // const data = {}
-  // const { results: data2 } = data.ram.characters
   const characterList = data.map(i => (
     <Box
       key={i.id}
@@ -42,12 +40,4 @@ function mapState(state) {
   return { data: state }
 }
 
-// function mapDispatch(dispatch) {
-//   return {
-//     onMessageClick(message) {
-//       dispatch({ type: "click", message })
-//     },
-//   }
-// }
-
-export default connect(mapState /* , mapDispatch */)(IndexPage)
+export default connect(mapState)(IndexPage)

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React from "react"
 import { navigate } from "gatsby"
 import { ModalRoutingContext } from "gatsby-plugin-modal-routing-3"
 import { Box } from "@chakra-ui/react"
@@ -8,12 +8,6 @@ import { CharacterUpdate } from "../components/character"
 import { getItem, UPDATE_ITEM } from "../state/state"
 
 const Update = ({ item, onSubmit }) => {
-  // const [id, setId] = useState(null)
-
-  // useEffect(() => {
-  //   setId(item.id)
-  // })
-
   const ModalContent = () => (
     <Box width="400px" padding="2rem" background="#fff" rounded="sm">
       {item.id ? (

@@ -5,27 +5,22 @@ import { nanoid } from "nanoid"
 
 import data from "../data/data"
 
-//ACTION TYPES
+// ACTION TYPES
 export const SET_ITEMS = "set_items"
 export const ADD_ITEM = "add_item"
 export const UPDATE_ITEM = "update_item"
 export const DELETE_ITEM = "delete_item"
 
-//REDUCERS-ACTIONS
+// REDUCERS-ACTIONS
 export const reducer = (state, action) => {
-  console.log("--R")
-  console.log(state)
-  console.log(action)
   const { id, name, image, status, gender, origin, location } =
     action.item || {}
 
   switch (action.type) {
     case SET_ITEMS: {
-      console.log("--sI")
       return action.payload
     }
     case ADD_ITEM: {
-      console.log("--aI")
       return [
         ...state,
         {
@@ -40,9 +35,7 @@ export const reducer = (state, action) => {
       ]
     }
     case UPDATE_ITEM: {
-      console.log("--uI")
       return state.map(i => {
-        console.log(id)
         if (i.id === id) {
           return {
             id,
@@ -58,7 +51,6 @@ export const reducer = (state, action) => {
       })
     }
     case DELETE_ITEM: {
-      console.log("--dI")
       return state.filter(i => {
         return i.id !== id
       })
@@ -68,17 +60,18 @@ export const reducer = (state, action) => {
   }
 }
 
-//STORE
+// STORE
 export const createStore = () => {
   return reduxCreateStore(
     reducer,
+    [],
     composeWithDevTools(applyMiddleware(thunkMiddleware))
   )
 }
 
-//THUNKS
-export async function fetchData(dispatch, getState) {
-  //TODO: catch errors
+// THUNKS
+export async function fetchData(dispatch/* , getState */) {
+  // TODO: catch errors
   const {
     data: {
       characters: { results },
@@ -90,5 +83,5 @@ export async function fetchData(dispatch, getState) {
   // console.log("after: ", getState())
 }
 
-//SELECTORS
+// SELECTORS
 export const getItem = (state, id) => state.find(i => i.id === id)

@@ -1,6 +1,5 @@
 import React from "react"
 import { Link } from "gatsby-plugin-modal-routing-3"
-// import { StaticImage } from "gatsby-plugin-image"
 import {
   Heading,
   Center,
@@ -17,14 +16,13 @@ import StatusIcon from "../statusIcon"
 export default function CharacterView({ data }) {
   const { id, name, image, gender, status, origin, location } = data
 
+  // TODO: use StaticImage
   return (
     <>
       <Image
         src={image}
         fallbackSrc="https://via.placeholder.com/400?text=Not%20found"
         width={`100%`}
-        // quality={95}
-        // formats={["auto", "webp", "avif"]}
         alt={name}
       />
       <Box p={2}>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React from "react"
 import { navigate } from "gatsby"
 import { ModalRoutingContext } from "gatsby-plugin-modal-routing-3"
 import { Box } from "@chakra-ui/react"
@@ -8,15 +8,9 @@ import { CharacterDelete } from "../components/character"
 import { getItem, DELETE_ITEM } from "../state/state"
 
 const Delete = ({ item, onSubmit }) => {
-  // const [id, setId] = useState(null)
-
-  // useEffect(() => {
-  //   setId(item.id)
-  // })
-
   const ModalContent = () => (
+    // TODO: prevent render on falsy id or handle it inside CharacterDelete
     <Box width="400px" padding="2rem" background="#fff" rounded="sm">
-      //TODO: prevent render or handle invalid id inside CharacterDelete
       {item?.id ? (
         <CharacterDelete
           data={item}
