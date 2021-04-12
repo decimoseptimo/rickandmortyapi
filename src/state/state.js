@@ -1,38 +1,64 @@
 import { createStore as reduxCreateStore, applyMiddleware } from "redux"
 import thunkMiddleware from "redux-thunk"
+import { composeWithDevTools } from "redux-devtools-extension"
+import { nanoid } from "nanoid"
 
 import data from "../data/data"
 
 //ACTION TYPES
 export const SET_ITEMS = "set_items"
-export const GET_ITEM = "get_item"
 export const ADD_ITEM = "add_item"
 export const UPDATE_ITEM = "update_item"
 export const DELETE_ITEM = "delete_item"
 
 //REDUCERS-ACTIONS
 export const reducer = (state, action) => {
-  const { id, name, image, status, gender, origin, location } = action
+  console.log("--R")
+  console.log(state)
+  console.log(action)
+  const { id, name, image, status, gender, origin, location } =
+    action.item || {}
 
   switch (action.type) {
     case SET_ITEMS: {
+      console.log("--sI")
       return action.payload
     }
-    case GET_ITEM: {
-      return getItem(state, id)
-    }
     case ADD_ITEM: {
-      return [...state, { id, name, image, status, gender, origin, location }]
+      console.log("--aI")
+      return [
+        ...state,
+        {
+          id: nanoid(),
+          name,
+          image,
+          status,
+          gender,
+          origin: { name: origin },
+          location: { name: location },
+        },
+      ]
     }
     case UPDATE_ITEM: {
+      console.log("--uI")
       return state.map(i => {
+        console.log(id)
         if (i.id === id) {
-          return { ...i, name, image, status, gender, origin, location }
+          return {
+            id,
+            name,
+            image,
+            status,
+            gender,
+            origin: { name: origin },
+            location: { name: location },
+          }
         }
         return i
       })
     }
     case DELETE_ITEM: {
+      console.log("--dI")
       return state.filter(i => {
         return i.id !== id
       })
@@ -44,7 +70,10 @@ export const reducer = (state, action) => {
 
 //STORE
 export const createStore = () => {
-  return reduxCreateStore(reducer, applyMiddleware(thunkMiddleware))
+  return reduxCreateStore(
+    reducer,
+    composeWithDevTools(applyMiddleware(thunkMiddleware))
+  )
 }
 
 //THUNKS
@@ -56,7 +85,7 @@ export async function fetchData(dispatch, getState) {
     },
   } = await data(2)
 
-  // console.log('before: ', getState())
+  // console.log("before: ", getState())
   dispatch({ type: SET_ITEMS, payload: results })
   // console.log("after: ", getState())
 }

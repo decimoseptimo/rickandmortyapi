@@ -5,24 +5,22 @@ import { Box } from "@chakra-ui/react"
 import { connect } from "react-redux"
 
 import { CharacterUpdate } from "../components/character"
-import { getItem } from "../state/state"
+import { getItem, UPDATE_ITEM } from "../state/state"
 
-const Update = ({ item }) => {
-  console.log(item)
-  const [id, setId] = useState(null)
+const Update = ({ item, onSubmit }) => {
+  // const [id, setId] = useState(null)
 
-  useEffect(() => {
-    setId(item.id)
-  })
+  // useEffect(() => {
+  //   setId(item.id)
+  // })
 
   const ModalContent = () => (
     <Box width="400px" padding="2rem" background="#fff" rounded="sm">
-      {id ? (
+      {item.id ? (
         <CharacterUpdate
-          id={id}
           data={item}
-          onSave={() => alert("DISABLED")}
-          onCancel={() => navigate(-1)}
+          onSubmit={onSubmit}
+          onClose={() => navigate(-1)}
         />
       ) : (
         "Invalid ID"
@@ -48,8 +46,8 @@ function mapState(state, ownProps) {
 
 function mapDispatch(dispatch) {
   return {
-    onMessageClick(message) {
-      dispatch({ type: "click", message })
+    onSubmit(item) {
+      dispatch({ type: UPDATE_ITEM, item })
     },
   }
 }

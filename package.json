@@ -10,6 +10,7 @@
     "@chakra-ui/react": "^1.4.2",
     "@emotion/react": "^11.1.5",
     "@emotion/styled": "^11.1.5",
+    "cross-fetch": "^3.1.4",
     "framer-motion": "^4.1.2",
     "gatsby": "^3.2.1",
     "gatsby-plugin-gatsby-cloud": "^2.2.0",
@@ -22,12 +23,15 @@
     "gatsby-source-filesystem": "^3.2.0",
     "gatsby-source-graphql": "^3.2.0",
     "gatsby-transformer-sharp": "^3.2.0",
+    "nanoid": "^3.1.22",
     "prop-types": "^15.7.2",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-helmet": "^6.1.0",
+    "react-hook-form": "^7.0.5",
     "react-redux": "^7.2.3",
     "redux": "^4.0.5",
+    "redux-devtools-extension": "^2.13.9",
     "redux-thunk": "^2.3.0"
   },
   "devDependencies": {

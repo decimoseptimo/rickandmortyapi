@@ -1,4 +1,6 @@
-const data = async (page=1) => {
+import fetch from "cross-fetch"
+
+const data = async (page = 1) => {
   const response = await fetch("https://rickandmortyapi.com/graphql", {
     method: "POST",
     headers: {
@@ -29,10 +31,10 @@ const data = async (page=1) => {
     }),
   })
   if (!response.ok) {
-    const message = `An error has occured: ${response.status}`;
-    throw new Error(message);
+    const message = `An error has occured: ${response.status}`
+    throw new Error(message)
   }
-  
+
   return await response.json()
 }
 
