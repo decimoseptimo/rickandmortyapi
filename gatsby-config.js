@@ -44,7 +44,7 @@ module.exports = {
         url: "https://rickandmortyapi.com/graphql",
       },
     },
-    //Using this plugin as a shortcut to achieve the modal effect.  
+    //Using this plugin as a shortcut to achieve the modal effect.
     //set overlayClassName & reactModalcontent to avoid a lot of boilerplate default styles
     //TODO: replace temp fork, see: https://github.com/lsirivong/gatsby-plugin-modal-routing/pull/60
     {

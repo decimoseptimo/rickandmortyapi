@@ -70,7 +70,7 @@ export const createStore = () => {
 }
 
 // THUNKS
-export async function fetchData(dispatch/* , getState */) {
+export async function fetchData(dispatch /* , getState */) {
   // TODO: catch errors
   const {
     data: {
