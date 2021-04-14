@@ -6,37 +6,54 @@ import { connect } from "react-redux"
 
 import { CharacterDelete } from "../components/character"
 import { getItem, DELETE_ITEM } from "../state/state"
+import Layout from "../components/layout"
 
-const Delete = ({ item, onSubmit }) => {
-  const ModalContent = () => (
-    // TODO: prevent render on falsy id or handle it inside CharacterDelete
-    <Box width="400px" padding="2rem" background="#fff" rounded="sm">
-      {item?.id ? (
-        <CharacterDelete
-          data={item}
-          onSubmit={onSubmit}
-          onClose={() => navigate(-1)}
-        />
+const Delete = ({ routeId, item, onSubmit }) => (
+  <ModalRoutingContext.Consumer>
+    {({ modal /* , closeTo */ }) =>
+      modal ? (
+        <Box
+          maxWidth="400px"
+          width="400px"
+          margin="0 auto"
+          padding="2rem"
+          background="#fff"
+          rounded="sm"
+        >
+          <CharacterDelete
+            routeId={routeId}
+            data={item}
+            onSubmit={onSubmit}
+            onClose={() => navigate(-1)}
+          />
+        </Box>
       ) : (
-        "Invalid ID"
-      )}
-    </Box>
-  )
-
-  return (
-    <ModalRoutingContext.Consumer>
-      {({ modal, closeTo }) =>
-        modal ? <ModalContent /> : <div>non modal content</div>
-      }
-    </ModalRoutingContext.Consumer>
-  )
-}
+        <Layout>
+          <Box
+            maxWidth="400px"
+            margin="0 auto"
+            padding="0 2rem"
+            background="#fff"
+            rounded="sm"
+          >
+            <CharacterDelete
+              routeId={routeId}
+              data={item}
+              onSubmit={onSubmit}
+              onClose={() => navigate("/")}
+            />
+          </Box>
+        </Layout>
+      )
+    }
+  </ModalRoutingContext.Consumer>
+)
 
 function mapState(state, ownProps) {
   const params = new URLSearchParams(ownProps.location.search)
-  const id = params.get("id")
+  const routeId = params.get("id")
 
-  return { item: getItem(state, id) }
+  return { routeId, item: getItem(state, routeId) }
 }
 
 function mapDispatch(dispatch) {

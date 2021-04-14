@@ -6,17 +6,38 @@ import { connect } from "react-redux"
 
 import { CharacterCreate } from "../components/character"
 import { ADD_ITEM } from "../state/state"
+import Layout from "../components/layout"
 
 const Create = ({ onSubmit }) => (
   <ModalRoutingContext.Consumer>
-    {({ modal, closeTo }) =>
-      modal ? (
-        <Box width="400px" padding="2rem" background="#fff" rounded="sm">
-          <CharacterCreate onSubmit={onSubmit} onClose={() => navigate(-1)} />
-        </Box>
-      ) : (
-        <div>non modal content</div>
-      )
+    {({ modal /* , closeTo */ }) => 
+    modal ? (
+          <Box
+            maxWidth="400px"
+            width="400px"
+            margin="0 auto"
+            padding="2rem"
+            background="#fff"
+            rounded="sm"
+          >
+            <CharacterCreate onSubmit={onSubmit} onClose={() => navigate(-1)} />
+          </Box>
+        ) : (
+          <Layout>
+            <Box
+              maxWidth="400px"
+              margin="0 auto"
+              padding="0 2rem"
+              background="#fff"
+              rounded="sm"
+            >
+              <CharacterCreate
+                onSubmit={onSubmit}
+                onClose={() => navigate("/")}
+              />
+            </Box>
+          </Layout>
+        )
     }
   </ModalRoutingContext.Consumer>
 )

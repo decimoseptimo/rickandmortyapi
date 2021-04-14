@@ -6,36 +6,54 @@ import { connect } from "react-redux"
 
 import { CharacterUpdate } from "../components/character"
 import { getItem, UPDATE_ITEM } from "../state/state"
+import Layout from "../components/layout"
 
-const Update = ({ item, onSubmit }) => {
-  const ModalContent = () => (
-    <Box width="400px" padding="2rem" background="#fff" rounded="sm">
-      {item.id ? (
-        <CharacterUpdate
-          data={item}
-          onSubmit={onSubmit}
-          onClose={() => navigate(-1)}
-        />
+const Update = ({ routeId, item, onSubmit }) => (
+  <ModalRoutingContext.Consumer>
+    {({ modal /* , closeTo */ }) =>
+      modal ? (
+        <Box
+          maxWidth="400px"
+          width="400px"
+          margin="0 auto"
+          padding="2rem"
+          background="#fff"
+          rounded="sm"
+        >
+          <CharacterUpdate
+            routeId={routeId}
+            data={item}
+            onSubmit={onSubmit}
+            onClose={() => navigate(-1)}
+          />
+        </Box>
       ) : (
-        "Invalid ID"
-      )}
-    </Box>
-  )
-
-  return (
-    <ModalRoutingContext.Consumer>
-      {({ modal, closeTo }) =>
-        modal ? <ModalContent /> : <div>non modal content</div>
-      }
-    </ModalRoutingContext.Consumer>
-  )
-}
+        <Layout>
+          <Box
+            maxWidth="400px"
+            margin="0 auto"
+            padding="0 2rem"
+            background="#fff"
+            rounded="sm"
+          >
+            <CharacterUpdate
+              routeId={routeId}
+              data={item}
+              onSubmit={onSubmit}
+              onClose={() => navigate("/")}
+            />
+          </Box>
+        </Layout>
+      )
+    }
+  </ModalRoutingContext.Consumer>
+)
 
 function mapState(state, ownProps) {
   const params = new URLSearchParams(ownProps.location.search)
-  const id = params.get("id")
+  const routeId = params.get("id")
 
-  return { item: getItem(state, id) }
+  return { routeId, item: getItem(state, routeId) }
 }
 
 function mapDispatch(dispatch) {
