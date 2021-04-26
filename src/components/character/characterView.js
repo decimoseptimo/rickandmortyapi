@@ -33,10 +33,10 @@ export default function CharacterView({ data }) {
           <Box margin="0 .3rem 0 .1rem" as="span">
             <StatusIcon status={status} />
           </Box>
-          {`${status} ${gender.toLowerCase()} from ${origin.name}`}
+          {`${status} ${gender?.toLowerCase()} from ${origin?.name}`}
         </Text>
         <Text my={2} textAlign={`center`}>
-          Last seen: {location.name}
+          {`Last seen: ${location?.name}`}
         </Text>
         <Center>
           <ButtonGroup my={2} variant="outline" spacing="2">

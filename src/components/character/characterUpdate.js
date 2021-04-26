@@ -1,17 +1,24 @@
 import React from "react"
+import { Box, Heading } from "@chakra-ui/react"
 
+import { InvalidCharacterAlert } from "./alerts/invalidCharacterAlert"
 import CharacterForm from "./characterForm"
 
 export default function CharacterUpdate({ data, routeId, onSubmit, onClose }) {
-  console.log(routeId)
+  const title = `Update Character #${routeId}`
+  // Falsy values will throw error
+  const error = !Boolean(data?.id)
 
   return (
-    <CharacterForm
-      title={`Update Character #${routeId}`}
-      data={data}
-      error={!Boolean(data?.id)}
-      onSubmit={onSubmit}
-      onClose={onClose}
-    />
+    <Box>
+      <Heading size="md" pb={2}>
+        {title}
+      </Heading>
+      {error ? (
+        <InvalidCharacterAlert />
+      ) : (
+        <CharacterForm data={data} onSubmit={onSubmit} onClose={onClose} />
+      )}
+    </Box>
   )
 }
