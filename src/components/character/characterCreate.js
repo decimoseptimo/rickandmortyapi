@@ -1,13 +1,13 @@
 import React from "react"
+import { Box, Heading } from "@chakra-ui/react"
 
 import CharacterForm from "./characterForm"
 
-export default function CharacterCreate({ onSubmit, onClose }) {
-  return (
-    <CharacterForm
-      title="Create Character"
-      onSubmit={onSubmit}
-      onClose={onClose}
-    />
-  )
-}
+export const CharacterCreate = ({ onSubmit, onClose }) => (
+  <Box>
+    <Heading size="md" pb={2}>
+      Create Character
+    </Heading>
+    <CharacterForm onSubmit={onSubmit} onClose={onClose} />
+  </Box>
+)

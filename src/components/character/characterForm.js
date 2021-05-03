@@ -1,21 +1,16 @@
 import React from "react"
 import {
-  Button,
   FormControl,
   FormLabel,
+  FormErrorMessage,
   Input,
-  Box,
-  Heading,
+  Button,
   HStack,
   VStack,
 } from "@chakra-ui/react"
 import { useForm } from "react-hook-form"
 
-import { InvalidCharacterAlert } from "./alerts/invalidCharacterAlert"
-
 export default function CharacterForm({
-  title,
-  error = false,
   data = null,
   onSubmit,
   onClose,
@@ -34,88 +29,93 @@ export default function CharacterForm({
   }
 
   return (
-    <Box>
-      <Heading size="md" pb={2}>
-        {title}
-      </Heading>
-      {error ? (
-        <InvalidCharacterAlert />
-      ) : (
-        <FormControl id="CharacterForm" isRequired spacing={4}>
-          <form onSubmit={handleSubmit(onSubmit2)}>
-            <VStack spacing={2} align="stretch">
-              <Box>
-                <FormLabel htmlFor="Name">Name</FormLabel>
-                <Input
-                  id="Name"
-                  placeholder="Name"
-                  defaultValue={name}
-                  {...register("name", { required: true })}
-                />
-                {errors.name && <span>This field is required</span>}
-              </Box>
-              <Box>
-                <FormLabel htmlFor="Image">Image</FormLabel>
-                <Input
-                  id="Image"
-                  placeholder="Image"
-                  defaultValue={image}
-                  {...register("image", { required: true })}
-                />
-                {errors.image && <span>This field is required</span>}
-              </Box>
-              <Box>
-                <FormLabel htmlFor="Status">Status</FormLabel>
-                <Input
-                  id="Status"
-                  placeholder="Status"
-                  defaultValue={status}
-                  {...register("status", { required: true })}
-                />
-                {errors.status && <span>This field is required</span>}
-              </Box>
-              <Box>
-                <FormLabel htmlFor="Gender">Gender</FormLabel>
-                <Input
-                  id="Gender"
-                  placeholder="Gender"
-                  defaultValue={gender}
-                  {...register("gender", { required: true })}
-                />
-                {errors.gender && <span>This field is required</span>}
-              </Box>
-              <Box>
-                <FormLabel htmlFor="Origin">Origin</FormLabel>
-                <Input
-                  id="Origin"
-                  placeholder="Origin"
-                  defaultValue={originName}
-                  {...register("origin", { required: true })}
-                />
-                {errors.origin && <span>This field is required</span>}
-              </Box>
-              <Box>
-                <FormLabel htmlFor="Location">Location</FormLabel>
-                <Input
-                  id="Location"
-                  placeholder="Location"
-                  defaultValue={locationName}
-                  {...register("location", { required: true })}
-                />
-                {errors.location && <span>This field is required</span>}
-              </Box>
-            </VStack>
-            <HStack pt={4} spacing={3} justifyContent="flex-end">
-              <Button variant="ghost" onClick={onClose}>
-                Cancel
-              </Button>
-              <Button type="submit" colorScheme="blue">
-                Save
-              </Button>
-            </HStack>
-          </form>
+    <form /* onSubmit={handleSubmit(onSubmit2)} */>
+      <VStack spacing={2} align="stretch">
+        <FormControl isInvalid={errors.name} isRequired>
+          <FormLabel htmlFor="name">Name</FormLabel>
+          <Input
+            id="name"
+            placeholder="Name"
+            defaultValue={name}
+            {...register("name", { required: true })}
+          />
+          <FormErrorMessage>
+            {errors.name && <span>This field is required</span>}
+          </FormErrorMessage>
         </FormControl>
-      )}
-    </Box>
+        <FormControl isInvalid={errors.image} isRequired>
+          <FormLabel htmlFor="image">Image</FormLabel>
+          <Input
+            id="image"
+            placeholder="Image"
+            defaultValue={image}
+            {...register("image", { required: true })}
+          />
+          <FormErrorMessage>
+            {errors.image && <span>This field is required</span>}
+          </FormErrorMessage>
+        </FormControl>
+        <FormControl isInvalid={errors.status} isRequired>
+          <FormLabel htmlFor="status">Status</FormLabel>
+          <Input
+            id="status"
+            placeholder="Status"
+            defaultValue={status}
+            {...register("status", { required: true })}
+          />
+          <FormErrorMessage>
+            {errors.status && <span>This field is required</span>}
+          </FormErrorMessage>
+        </FormControl>
+        <FormControl isInvalid={errors.gender} isRequired>
+          <FormLabel htmlFor="gender">Gender</FormLabel>
+          <Input
+            id="gender"
+            placeholder="Gender"
+            defaultValue={gender}
+            {...register("gender", { required: true })}
+          />
+          <FormErrorMessage>
+            {errors.gender && <span>This field is required</span>}
+          </FormErrorMessage>
+        </FormControl>
+        <FormControl isInvalid={errors.origin} isRequired>
+          <FormLabel htmlFor="origin">Origin</FormLabel>
+          <Input
+            id="origin"
+            placeholder="Origin"
+            defaultValue={originName}
+            {...register("origin", { required: true })}
+          />
+          <FormErrorMessage>
+            {errors.origin && <span>This field is required</span>}
+          </FormErrorMessage>
+        </FormControl>
+        <FormControl isInvalid={errors.location} isRequired>
+          <FormLabel htmlFor="location">Location</FormLabel>
+          <Input
+            id="location"
+            placeholder="Location"
+            defaultValue={locationName}
+            {...register("location", { required: true })}
+          />
+          <FormErrorMessage>
+            {errors.location && <span>This field is required</span>}
+          </FormErrorMessage>
+        </FormControl>
+      </VStack>
+      <HStack pt={4} spacing={3} justifyContent="flex-end">
+        <Button variant="ghost" onClick={onClose}>
+          Cancel
+        </Button>
+        <Button
+          // type="submit"
+          onClick={handleSubmit(onSubmit2)}
+          colorScheme="blue"
+        >
+          Save
+        </Button>
+      </HStack>
+    </form>
   )
 }
