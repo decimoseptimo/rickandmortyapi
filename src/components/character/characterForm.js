@@ -15,7 +15,7 @@ import { InvalidCharacterAlert } from "./alerts/invalidCharacterAlert"
 
 export default function CharacterForm({
   title,
-  error=false,
+  error = false,
   data = null,
   onSubmit,
   onClose,
@@ -45,7 +45,7 @@ export default function CharacterForm({
           <form onSubmit={handleSubmit(onSubmit2)}>
             <VStack spacing={2} align="stretch">
               <Box>
-                <FormLabel>Name</FormLabel>
+                <FormLabel htmlFor="Name">Name</FormLabel>
                 <Input
                   id="Name"
                   placeholder="Name"
@@ -55,7 +55,7 @@ export default function CharacterForm({
                 {errors.name && <span>This field is required</span>}
               </Box>
               <Box>
-                <FormLabel>Image</FormLabel>
+                <FormLabel htmlFor="Image">Image</FormLabel>
                 <Input
                   id="Image"
                   placeholder="Image"
@@ -65,7 +65,7 @@ export default function CharacterForm({
                 {errors.image && <span>This field is required</span>}
               </Box>
               <Box>
-                <FormLabel>Status</FormLabel>
+                <FormLabel htmlFor="Status">Status</FormLabel>
                 <Input
                   id="Status"
                   placeholder="Status"
@@ -75,7 +75,7 @@ export default function CharacterForm({
                 {errors.status && <span>This field is required</span>}
               </Box>
               <Box>
-                <FormLabel>Gender</FormLabel>
+                <FormLabel htmlFor="Gender">Gender</FormLabel>
                 <Input
                   id="Gender"
                   placeholder="Gender"
@@ -85,7 +85,7 @@ export default function CharacterForm({
                 {errors.gender && <span>This field is required</span>}
               </Box>
               <Box>
-                <FormLabel>Origin</FormLabel>
+                <FormLabel htmlFor="Origin">Origin</FormLabel>
                 <Input
                   id="Origin"
                   placeholder="Origin"
@@ -95,7 +95,7 @@ export default function CharacterForm({
                 {errors.origin && <span>This field is required</span>}
               </Box>
               <Box>
-                <FormLabel>Location</FormLabel>
+                <FormLabel htmlFor="Location">Location</FormLabel>
                 <Input
                   id="Location"
                   placeholder="Location"
