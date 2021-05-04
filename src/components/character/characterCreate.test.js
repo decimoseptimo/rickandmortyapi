@@ -4,9 +4,6 @@ import "@testing-library/jest-dom/extend-expect"
 
 import { CharacterCreate } from "./characterCreate"
 
-// Done with this principles
-// https://kentcdodds.com/blog/common-mistakes-with-react-testing-library
-
 it("renders correctly", () => {
   render(<CharacterCreate onSubmit={_ => {}} onClose={_ => {}} />)
 

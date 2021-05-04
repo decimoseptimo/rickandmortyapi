@@ -27,8 +27,7 @@ it("renders form with data on truthy data.id", () => {
     screen.getByRole("heading", { name: /update character/i })
   ).toBeInTheDocument()
 
-  // form fields (input values)
-  expect(screen.getByRole("form")).toBeInTheDocument()
+  // form fields (filled input values)
   expect(screen.getByRole("textbox", { name: /name/i })).toHaveValue(data.name)
   expect(screen.getByRole("textbox", { name: /image/i })).toHaveValue(
     data.image
@@ -45,6 +44,8 @@ it("renders form with data on truthy data.id", () => {
   expect(screen.getByRole("textbox", { name: /location/i })).toHaveValue(
     data.location.name
   )
+
+  // alert
   expect(screen.queryByRole("alert")).not.toBeInTheDocument()
 })
 
@@ -60,6 +61,12 @@ it("renders alert on falsy data.id", () => {
       onClose={_ => {}}
     />
   )
-  expect(screen.queryByRole("form")).not.toBeInTheDocument()
+
+  // form
+  expect(
+    screen.queryByRole("form", { name: "characterForm" })
+  ).not.toBeInTheDocument()
+  
+  // alert
   expect(screen.getByRole("alert")).toHaveTextContent(/invalid id/i)
 })
