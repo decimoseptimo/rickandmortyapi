@@ -2,7 +2,7 @@ import React from "react"
 import { fireEvent, render, screen, waitFor } from "@testing-library/react"
 import "@testing-library/jest-dom/extend-expect"
 
-import CharacterCreate from "./characterCreate"
+import { CharacterCreate } from "./characterCreate"
 
 // Done with this principles
 // https://kentcdodds.com/blog/common-mistakes-with-react-testing-library
@@ -49,14 +49,14 @@ it("on cancel, run callback", () => {
   expect(cb).toHaveBeenCalled()
 })
 
-it("on submit with empty fields, don't run callback", async () => {
+it("on submit with empty fields, throw error message", async () => {
   const cb = jest.fn()
   render(<CharacterCreate onSubmit={cb} onClose={_ => {}} />)
 
   // click submit
   fireEvent.click(screen.getByRole("button", { name: /save/i }))
-  await waitFor(() => expect(cb).not.toHaveBeenCalled())
-  // expect(cb).not.toHaveBeenCalled()
+  expect(await screen.findAllByText(/required/i)).toHaveLength(6)
+  expect(cb).not.toHaveBeenCalled()
 })
 
 it("on submit with all fields filled, run callback", async () => {
