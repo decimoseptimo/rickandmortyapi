@@ -29,7 +29,7 @@ export default function CharacterForm({
   }
 
   return (
-    <form /* onSubmit={handleSubmit(onSubmit2)} */>
+    <form name="characterForm" /* onSubmit={handleSubmit(onSubmit2)} */>
       <VStack spacing={2} align="stretch">
         <FormControl isInvalid={errors.name} isRequired>
           <FormLabel htmlFor="name">Name</FormLabel>

@@ -6,6 +6,7 @@ import CharacterForm from "./characterForm"
 
 export default function CharacterUpdate({ data, routeId, onSubmit, onClose }) {
   const title = `Update Character #${routeId}`
+  // Falsy values will throw error
   const error = !Boolean(data?.id)
 
   return (
