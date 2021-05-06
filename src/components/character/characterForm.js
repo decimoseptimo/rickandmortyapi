@@ -10,11 +10,7 @@ import {
 } from "@chakra-ui/react"
 import { useForm } from "react-hook-form"
 
-export default function CharacterForm({
-  data = null,
-  onSubmit,
-  onClose,
-}) {
+export default function CharacterForm({ data = null, onSubmit, onClose }) {
   const { id, name, image, status, gender, origin, location } = data || {}
   const { name: originName } = origin || {}
   const { name: locationName } = location || {}
@@ -29,7 +25,10 @@ export default function CharacterForm({
   }
 
   return (
-    <form name="characterForm" /* onSubmit={handleSubmit(onSubmit2)} */>
+    <form
+      aria-label="characterForm"
+      /* onSubmit={handleSubmit(onSubmit2)} */
+    >
       <VStack spacing={2} align="stretch">
         <FormControl isInvalid={errors.name} isRequired>
           <FormLabel htmlFor="name">Name</FormLabel>
