@@ -9,7 +9,6 @@ export default function CharacterDelete({ data, routeId, onSubmit, onClose }) {
     onSubmit(data)
   }
   const error = !Boolean(data?.id)
-  console.log(routeId)
 
   return (
     <Box>

@@ -4,16 +4,17 @@ import "@testing-library/jest-dom/extend-expect"
 
 import CharacterUpdate from "./characterUpdate"
 
-it("renders form with data on truthy data.id", () => {
-  const data = {
-    id: "1",
-    name: "2",
-    image: "3",
-    status: "4",
-    gender: "5",
-    origin: { name: "6" },
-    location: { name: "7" },
-  }
+const data = {
+  id: "test id",
+  name: "test name",
+  image: "test image",
+  status: "test status",
+  gender: "test gender",
+  origin: { name: "test origin" },
+  location: { name: "test location" },
+}
+
+it("renders correctly on truthy data.id", () => {
   render(
     <CharacterUpdate
       data={data}
