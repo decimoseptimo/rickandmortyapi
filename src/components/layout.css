@@ -596,6 +596,8 @@ pre tt:after {
   }
 }
 
+/* .status-icon */
+
 .status-icon {
   display: inline-block;
   height: 0.5rem;
