@@ -52,5 +52,8 @@ it("renders with fallback image", () => {
 
   // undefined fields are going to be presented as "undefined" to the user
   // we'll only assert that a fallback image is displayed
-  expect(screen.getByRole("img")).toHaveAttribute("src", "https://via.placeholder.com/400?text=Not%20found")
+  expect(screen.getByRole("img")).toHaveAttribute(
+    "src",
+    "https://via.placeholder.com/400?text=Not%20found"
+  )
 })

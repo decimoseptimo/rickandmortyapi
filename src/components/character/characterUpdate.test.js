@@ -67,7 +67,7 @@ it("renders alert on falsy data.id", () => {
   expect(
     screen.queryByRole("form", { name: "characterForm" })
   ).not.toBeInTheDocument()
-  
+
   // alert
   expect(screen.getByRole("alert")).toHaveTextContent(/invalid id/i)
 })

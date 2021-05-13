@@ -35,7 +35,7 @@ const data = async (page = 1) => {
     throw new Error(message)
   }
 
-  return await response.json()
+  return response.json()
 }
 
 export default data
