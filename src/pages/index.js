@@ -8,7 +8,7 @@ import SEO from "../components/seo"
 import AddButton from "../components/addButton"
 import { CharacterView } from "../components/character"
 
-const IndexPage = ({ data }) => {
+export const IndexPage = ({ data }) => {
   const characterList = data.map(i => (
     <Box
       key={i.id}
@@ -16,6 +16,7 @@ const IndexPage = ({ data }) => {
       borderWidth="1px"
       borderRadius="lg"
       overflow="hidden"
+      data-testid="characterListItem"
     >
       <CharacterView data={i} />
     </Box>
@@ -24,12 +25,12 @@ const IndexPage = ({ data }) => {
   return (
     <Layout>
       <SEO title="Home" />
-      <SimpleGrid columns={[1, 2, 3]} spacing={10}>
+      <SimpleGrid columns={[1, 2, 3]} spacing={10} data-testid="characterList">
         {characterList}
       </SimpleGrid>
       <Box position="fixed" bottom="1rem" right="1rem">
         <Link to="create" asModal>
-          <AddButton colorScheme={"green"} />
+          <AddButton colorScheme={"green"} aria-label="Add character button" />
         </Link>
       </Box>
     </Layout>
