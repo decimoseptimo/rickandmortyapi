@@ -2,7 +2,7 @@ import React from "react"
 import { render, screen } from "@testing-library/react"
 import "@testing-library/jest-dom/extend-expect"
 
-import { CharacterCreate } from "./characterCreate"
+import { CharacterCreate } from "../characterCreate"
 
 it("renders correctly", () => {
   render(<CharacterCreate onSubmit={_ => {}} onClose={_ => {}} />)

@@ -2,7 +2,7 @@ import React from "react"
 import { render, screen } from "@testing-library/react"
 import "@testing-library/jest-dom/extend-expect"
 
-import CharacterUpdate from "./characterUpdate"
+import CharacterUpdate from "../characterUpdate"
 
 const data = {
   id: "test id",

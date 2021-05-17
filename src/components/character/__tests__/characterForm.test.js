@@ -2,7 +2,7 @@ import React from "react"
 import { fireEvent, render, screen, waitFor } from "@testing-library/react"
 import "@testing-library/jest-dom/extend-expect"
 
-import CharacterForm from "./characterForm"
+import CharacterForm from "../characterForm"
 
 it("renders correctly", () => {
   render(<CharacterForm onSubmit={_ => {}} onClose={_ => {}} />)
