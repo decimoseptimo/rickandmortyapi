@@ -19,6 +19,7 @@ const Delete = ({ routeId, item, onSubmit }) => (
           padding="2rem"
           background="#fff"
           rounded="sm"
+          data-test-id="character-delete"
         >
           <CharacterDelete
             routeId={routeId}

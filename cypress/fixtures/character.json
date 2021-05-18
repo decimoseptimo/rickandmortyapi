@@ -1,0 +1,8 @@
+{
+  "name": "test name",
+  "image": "test image",
+  "status": "test status",
+  "gender": "test gender",
+  "origin": "test origin",
+  "location": "test location"
+}

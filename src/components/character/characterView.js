@@ -29,13 +29,18 @@ export default function CharacterView({ data }) {
         <Heading as="h2" size="sm">
           {name}
         </Heading>
-        <Text textTransform="uppercase" fontSize="11px" color="gray">
+        <Text
+          textTransform="uppercase"
+          fontSize="11px"
+          color="gray"
+          data-testid="x-from-y"
+        >
           <Box margin="0 .3rem 0 .1rem" as="span">
             <StatusIcon status={status} />
           </Box>
           {`${status} ${gender?.toLowerCase()} from ${origin?.name}`}
         </Text>
-        <Text my={2} textAlign={`center`}>
+        <Text my={2} textAlign={`center`} data-testid="last-seen">
           {`Last seen: ${location?.name}`}
         </Text>
         <Center>
