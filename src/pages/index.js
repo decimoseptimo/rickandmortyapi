@@ -9,13 +9,14 @@ import AddButton from "../components/addButton"
 import { CharacterView } from "../components/character"
 
 const IndexPage = ({ data }) => {
-  const characterList = data.map(i => (
+  const characterCards = data.map(i => (
     <Box
       key={i.id}
       maxW="sm"
       borderWidth="1px"
       borderRadius="lg"
       overflow="hidden"
+      data-testid="characterCard"
     >
       <CharacterView data={i} />
     </Box>
@@ -25,11 +26,11 @@ const IndexPage = ({ data }) => {
     <Layout>
       <SEO title="Home" />
       <SimpleGrid columns={[1, 2, 3]} spacing={10}>
-        {characterList}
+        {characterCards}
       </SimpleGrid>
       <Box position="fixed" bottom="1rem" right="1rem">
         <Link to="create" asModal>
-          <AddButton colorScheme={"green"} />
+          <AddButton colorScheme={"green"} aria-label="Add character button" />
         </Link>
       </Box>
     </Layout>

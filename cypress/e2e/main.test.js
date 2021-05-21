@@ -17,7 +17,7 @@ function setup() {
     return Math.floor(Math.random() * (max - min + 1)) + min
   }
 
-  cy.findAllByTestId("characterListItem").then(el => {
+  cy.findAllByTestId("characterCard").then(el => {
     cy.wrap(el.length).as("initialCardsCount")
     const index = getRandomInt(0, el.length - 1)
     cy.wrap(el[index]).as("randomCard")
@@ -70,7 +70,7 @@ it("Creates character", () => {
 
   cy.get("@initialCardsCount").then(initialCardsCount => {
     // re-count cards & check there's a new card
-    cy.findAllByTestId("characterListItem").should(
+    cy.findAllByTestId("characterCard").should(
       "have.length",
       initialCardsCount + 1
     )
@@ -124,7 +124,7 @@ it("Updates character", () => {
 
   cy.get("@initialCardsCount").then(initialCardsCount => {
     // re-count cards & check there's the same initial ammount
-    cy.findAllByTestId("characterListItem").should(
+    cy.findAllByTestId("characterCard").should(
       "have.length",
       initialCardsCount
     )
@@ -149,7 +149,7 @@ it("Deletes character", function () {
   })
   // re-count cards & check there's one less card present on the page
   cy.get("@initialCardsCount").then(initialCardsCount => {
-    cy.findAllByTestId("characterListItem").should(
+    cy.findAllByTestId("characterCard").should(
       "have.length",
       initialCardsCount - 1
     )
