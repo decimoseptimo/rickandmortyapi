@@ -1,5 +1,5 @@
 /**
- * Finds all the character cards in the current page and count them 
+ * Finds all the character cards in the current page and count them
  * set the count as @initialCardsCount alias,
  * chooses one randomly and set it as @randomCard alias
  */
@@ -85,6 +85,7 @@ it("Updates character", () => {
   cy.get("@randomCard")
     .findByRole("button", { name: /update character/i })
     .click()
+  cy.url().should("include", "update")
 
   // load sample data
   cy.fixture("character").then(character => {
@@ -124,10 +125,7 @@ it("Updates character", () => {
 
   cy.get("@initialCardsCount").then(initialCardsCount => {
     // re-count cards & check there's the same initial ammount
-    cy.findAllByTestId("characterCard").should(
-      "have.length",
-      initialCardsCount
-    )
+    cy.findAllByTestId("characterCard").should("have.length", initialCardsCount)
   })
 })
 
@@ -139,6 +137,7 @@ it("Deletes character", function () {
   cy.get("@randomCard")
     .findByRole("button", { name: /delete character/i })
     .click()
+  cy.url().should("include", "delete")
   // a modal opens, says 'delete character', click yes.
   // multiple children selection over a parent element, using then/wrap as an alternative to within
   cy.findByRole("dialog").then(el => {
