@@ -11,7 +11,7 @@ import {
 } from "@chakra-ui/react"
 import { EditIcon, DeleteIcon } from "@chakra-ui/icons"
 
-import StatusIcon from "../statusIcon"
+import StatusIcon from "../ui/statusIcon"
 
 export default function CharacterView({ data }) {
   const { id, name, image, gender, status, origin, location } = data
