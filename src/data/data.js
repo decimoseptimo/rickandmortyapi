@@ -12,6 +12,7 @@ const data = async (page = 1) => {
         characters(page: ${page}) {
           info {
             count
+            pages
           }
           results {
             id

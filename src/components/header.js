@@ -1,10 +1,8 @@
 import * as React from "react"
 import PropTypes from "prop-types"
 import { Link } from "gatsby"
-import { Flex, Box, Button } from "@chakra-ui/react"
+import { Flex, Box } from "@chakra-ui/react"
 import About from "./about"
-
-import { getRandomInt } from "../utils"
 
 const Header = ({ siteTitle }) => (
   <header
@@ -30,20 +28,6 @@ const Header = ({ siteTitle }) => (
       <Box py="4" px="1">
         <About />
       </Box>
-      <Button
-        colorScheme="teal"
-        size="xs"
-        variant="link"
-        css={{
-          position: "absolute",
-          right: "1rem",
-          color: "#471c71",
-          textTransform: "uppercase",
-        }}
-        onClick={() => console.log(getRandomInt(0, 9))}
-      >
-        Reload
-      </Button>
     </Flex>
   </header>
 )

@@ -53,7 +53,7 @@ function mapState(state, ownProps) {
   const params = new URLSearchParams(ownProps.location.search)
   const routeId = params.get("id")
 
-  return { routeId, item: getItem(state, routeId) }
+  return { routeId, item: getItem(state.itemsReducer, routeId) }
 }
 
 function mapDispatch(dispatch) {
