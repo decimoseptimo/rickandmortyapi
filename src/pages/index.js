@@ -5,7 +5,7 @@ import { connect } from "react-redux"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
-import AddButton from "../components/addButton"
+import AddButton from "../components/ui/addButton"
 import ReloadButton from "../components/reloadButton"
 import { CharacterView } from "../components/character"
 import { fetchData } from "../state/state"

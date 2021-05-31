@@ -8,7 +8,9 @@ import View from "./ui/reloadButton"
 function ReloadButton({ misc, fetchData }) {
   return (
     <View
-      aria-label="Reload character button"
+      aria-label={
+        misc.isLoading ? "Reloading character" : "Reload character button"
+      }
       isLoading={misc.isLoading}
       // pagination is a "1 based" index, see: https://rickandmortyapi.com/documentation/#info-and-pagination
       onClick={() => fetchData(getRandomInt(1, misc.itemsInfo.pages))}
