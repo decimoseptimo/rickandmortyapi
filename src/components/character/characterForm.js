@@ -9,6 +9,7 @@ import {
   VStack,
 } from "@chakra-ui/react"
 import { useForm } from "react-hook-form"
+import PropTypes from "prop-types"
 
 export default function CharacterForm({ data = null, onSubmit, onClose }) {
   const { id, name, image, status, gender, origin, location } = data || {}
@@ -117,4 +118,12 @@ export default function CharacterForm({ data = null, onSubmit, onClose }) {
       </HStack>
     </form>
   )
+}
+
+CharacterForm.propTypes = {
+  /**
+   * Optional click handler
+   */
+  onSubmit: PropTypes.func,
+  onClose: PropTypes.func,
 }

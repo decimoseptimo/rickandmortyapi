@@ -18,7 +18,15 @@ export default function CharacterView({ data }) {
 
   // TODO: use StaticImage
   return (
-    <>
+    <Box
+      // maxW="sm"
+      overflow="hidden"
+      borderWidth="1px"
+      borderRadius="lg"
+      backgroundColor="#efefef"
+      textAlign="center"
+      data-testid="characterCard"
+    >
       <Image
         src={image}
         fallbackSrc="https://via.placeholder.com/400?text=Not%20found"
@@ -26,7 +34,7 @@ export default function CharacterView({ data }) {
         alt={name}
       />
       <Box p={2}>
-        <Heading as="h2" size="sm">
+        <Heading as="h2" size="sm" marginTop="var(--chakra-space-2)">
           {name}
         </Heading>
         <Text
@@ -40,7 +48,12 @@ export default function CharacterView({ data }) {
           </Box>
           {`${status} ${gender?.toLowerCase()} from ${origin?.name}`}
         </Text>
-        <Text my={2} textAlign={`center`} data-testid="last-seen">
+        <Text
+          my={2}
+          textAlign="center"
+          fontStyle="italic"
+          data-testid="last-seen"
+        >
           {`Last seen: ${location?.name}`}
         </Text>
         <Center>
@@ -51,6 +64,7 @@ export default function CharacterView({ data }) {
                 colorScheme={"blue"}
                 aria-label="update character"
                 size="sm"
+                borderRadius="var(--chakra-radii-md)"
               />
             </Link>
             <Link to={`/delete/?id=${id}`} asModal>
@@ -59,11 +73,12 @@ export default function CharacterView({ data }) {
                 colorScheme={"red"}
                 aria-label="delete character"
                 size="sm"
+                borderRadius="var(--chakra-radii-md)"
               />
             </Link>
           </ButtonGroup>
         </Center>
       </Box>
-    </>
+    </Box>
   )
 }
