@@ -35,6 +35,11 @@
     "redux-thunk": "^2.3.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.14.5",
+    "@storybook/addon-actions": "^6.2.9",
+    "@storybook/addon-essentials": "^6.2.9",
+    "@storybook/addon-links": "^6.2.9",
+    "@storybook/react": "^6.2.9",
     "@testing-library/cypress": "^7.0.6",
     "@testing-library/dom": "^7.30.4",
     "@testing-library/jest-dom": "^5.12.0",
@@ -42,6 +47,7 @@
     "@types/jest": "^26.0.22",
     "axe-core": "^4.2.0",
     "babel-jest": "^26.6.3",
+    "babel-loader": "^8.2.2",
     "babel-preset-gatsby": "^1.5.0",
     "cypress": "^7.3.0",
     "cypress-axe": "^0.12.2",
@@ -68,7 +74,9 @@
     "cy:open": "cypress open",
     "cy:run": "cypress run",
     "test:e2e": "start-server-and-test develop http://localhost:8000 cy:open",
-    "test:e2e:ci": "start-server-and-test develop http://localhost:8000 cy:run"
+    "test:e2e:ci": "start-server-and-test develop http://localhost:8000 cy:run",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "repository": {
     "type": "git",
