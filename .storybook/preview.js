@@ -1,3 +1,5 @@
+import * as React from "react"
+import { ChakraProvider } from "@chakra-ui/react"
 import { action } from "@storybook/addon-actions"
 
 // Gatsby's Link overrides:
@@ -27,3 +29,13 @@ export const parameters = {
     },
   },
 }
+
+const withChakra = StoryFn => {
+  return (
+    <ChakraProvider>
+      <StoryFn />
+    </ChakraProvider>
+  )
+}
+
+export const decorators = [withChakra]

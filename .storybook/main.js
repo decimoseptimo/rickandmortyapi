@@ -1,3 +1,7 @@
+const path = require("path")
+
+const toPath = (_path) => path.join(process.cwd(), _path)
+
 module.exports = {
   stories: ["../src/**/*.stories.mdx", "../src/**/*.stories.@(js|jsx|ts|tsx)"],
   addons: ["@storybook/addon-links", "@storybook/addon-essentials"],
@@ -24,8 +28,17 @@ module.exports = {
     // Prefer Gatsby ES6 entrypoint (module) over commonjs (main) entrypoint
     config.resolve.mainFields = ["browser", "module", "main"]
 
-    return config
-  },
+    return {
+      ...config,
+      resolve: {
+        ...config.resolve,
+        alias: {
+          ...config.resolve.alias,
+          "@emotion/core": toPath("node_modules/@emotion/react"),
+          "emotion-theming": toPath("node_modules/@emotion/react"),
+        },
+      },
+    }  },
   core: {
     builder: "webpack5",
   },
