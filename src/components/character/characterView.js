@@ -23,7 +23,8 @@ export default function CharacterView({ data }) {
       overflow="hidden"
       borderWidth="1px"
       borderRadius="lg"
-      backgroundColor="#fff"
+      backgroundColor="#efefef"
+      textAlign="center"
     >
       <Image
         src={image}
@@ -32,7 +33,7 @@ export default function CharacterView({ data }) {
         alt={name}
       />
       <Box p={2}>
-        <Heading as="h2" size="sm">
+        <Heading as="h2" size="sm" marginTop="var(--chakra-space-2)">
           {name}
         </Heading>
         <Text
@@ -50,7 +51,7 @@ export default function CharacterView({ data }) {
           {`Last seen: ${location?.name}`}
         </Text>
         <Center>
-          <ButtonGroup my={2} variant="outline" spacing="2" background="#fff">
+          <ButtonGroup my={2} variant="outline" spacing="2">
             <Link to={`/update/?id=${id}`} asModal>
               <IconButton
                 icon={<EditIcon />}
