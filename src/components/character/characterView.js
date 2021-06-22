@@ -18,7 +18,13 @@ export default function CharacterView({ data }) {
 
   // TODO: use StaticImage
   return (
-    <>
+    <Box
+      // maxW="sm"
+      overflow="hidden"
+      borderWidth="1px"
+      borderRadius="lg"
+      backgroundColor="#fff"
+    >
       <Image
         src={image}
         fallbackSrc="https://via.placeholder.com/400?text=Not%20found"
@@ -44,7 +50,7 @@ export default function CharacterView({ data }) {
           {`Last seen: ${location?.name}`}
         </Text>
         <Center>
-          <ButtonGroup my={2} variant="outline" spacing="2">
+          <ButtonGroup my={2} variant="outline" spacing="2" background="#fff">
             <Link to={`/update/?id=${id}`} asModal>
               <IconButton
                 icon={<EditIcon />}
@@ -64,6 +70,6 @@ export default function CharacterView({ data }) {
           </ButtonGroup>
         </Center>
       </Box>
-    </>
+    </Box>
   )
 }

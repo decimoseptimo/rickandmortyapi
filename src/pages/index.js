@@ -12,16 +12,7 @@ import { fetchData } from "../state/state"
 
 const IndexPage = ({ data, fetchData }) => {
   const characterCards = data.map(i => (
-    <Box
-      key={i.id}
-      maxW="sm"
-      borderWidth="1px"
-      borderRadius="lg"
-      overflow="hidden"
-      data-testid="characterCard"
-    >
-      <CharacterView data={i} />
-    </Box>
+    <CharacterView data={i} key={i.id} data-testid="characterCard" />
   ))
 
   const loadingCards = (
