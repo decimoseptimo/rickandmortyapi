@@ -47,7 +47,12 @@ export default function CharacterView({ data }) {
           </Box>
           {`${status} ${gender?.toLowerCase()} from ${origin?.name}`}
         </Text>
-        <Text my={2} textAlign={`center`} data-testid="last-seen">
+        <Text
+          my={2}
+          textAlign="center"
+          fontStyle="italic"
+          data-testid="last-seen"
+        >
           {`Last seen: ${location?.name}`}
         </Text>
         <Center>
@@ -58,6 +63,7 @@ export default function CharacterView({ data }) {
                 colorScheme={"blue"}
                 aria-label="update character"
                 size="sm"
+                borderRadius="var(--chakra-radii-md)"
               />
             </Link>
             <Link to={`/delete/?id=${id}`} asModal>
@@ -66,6 +72,7 @@ export default function CharacterView({ data }) {
                 colorScheme={"red"}
                 aria-label="delete character"
                 size="sm"
+                borderRadius="var(--chakra-radii-md)"
               />
             </Link>
           </ButtonGroup>
