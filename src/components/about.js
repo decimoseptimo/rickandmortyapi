@@ -23,7 +23,7 @@ export default function About() {
         color={`white`}
         rightIcon={<InfoIcon />}
         position="relative"
-        top="-2px"
+        top="1px"
         isRound={true}
         aria-label="About"
         size="xs"

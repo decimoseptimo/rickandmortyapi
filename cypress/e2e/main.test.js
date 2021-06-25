@@ -159,7 +159,7 @@ it("Reload characters & renders correctly (tests one random card only)", () => {
   // click reload
   cy.findByRole("button", { name: "Reload character button" }).click()
   // is loading
-  cy.findByRole("button", { name: "Reloading character" }).then(() => {
+  cy.findByRole("button", { name: "Reload character button isLoading" }).then(() => {
     // has loaded
     cy.findByRole("button", { name: "Reload character button" }).then(() => {
       // chosen card should no longer exist (we actually test for its inner heading)

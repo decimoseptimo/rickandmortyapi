@@ -596,22 +596,6 @@ pre tt:after {
   }
 }
 
-/* .status-icon */
-
-.status-icon {
-  display: inline-block;
-  height: 0.5rem;
-  width: 0.5rem;
-  background: rgb(158, 158, 158);
-  border-radius: 50%;
-}
-.status-icon.alive {
-  background: rgb(85, 204, 68);
-}
-.status-icon.dead {
-  background: rgb(214, 61, 46);
-}
-
 /* ReactModal */
 
 .ReactModal__Overlay {

@@ -1,0 +1,20 @@
+{
+  "machine": {
+    "id": "testId",
+    "name": "testName",
+    "image": "testImage",
+    "status": "testStatus",
+    "gender": "testGender",
+    "origin": { "name": "testOrigin" },
+    "location": { "name": "testLocation" }
+  },
+  "real": {
+    "id": "1",
+    "name": "Artist Morty",
+    "image": "https://rickandmortyapi.com/api/character/avatar/27.jpeg",
+    "status": "Alive",
+    "gender": "Male",
+    "origin": { "name": "Unknown" },
+    "location": { "name": "Citadel of Ricks" }
+  }
+}

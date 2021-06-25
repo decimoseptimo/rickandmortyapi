@@ -3,16 +3,9 @@ import { render, screen } from "@testing-library/react"
 import "@testing-library/jest-dom/extend-expect"
 
 import CharacterView from "../characterView"
+import CharacterData from "../../../fixtures/character.json"
 
-const data = {
-  id: "test id",
-  name: "test name",
-  image: "test image",
-  status: "test status",
-  gender: "test gender",
-  origin: { name: "test origin" },
-  location: { name: "test location" },
-}
+const data = CharacterData.real
 
 it("renders correctly", () => {
   render(<CharacterView data={data} />)
