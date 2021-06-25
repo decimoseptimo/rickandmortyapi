@@ -75,6 +75,7 @@
     "test": "jest",
     "cy:open": "cypress open",
     "cy:run": "cypress run",
+    "cy:run:nomedia": "cypress run --config video=false screenshotOnRunFailure=false",
     "test:e2e": "start-server-and-test develop http://localhost:8000 cy:open",
     "test:e2e:ci": "start-server-and-test develop http://localhost:8000 cy:run",
     "storybook": "start-storybook -p 6006",
