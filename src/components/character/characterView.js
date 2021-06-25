@@ -25,6 +25,7 @@ export default function CharacterView({ data }) {
       borderRadius="lg"
       backgroundColor="#efefef"
       textAlign="center"
+      data-testid="characterCard"
     >
       <Image
         src={image}

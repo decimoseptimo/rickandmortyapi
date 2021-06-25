@@ -12,7 +12,7 @@
     "id": "1",
     "name": "Artist Morty",
     "image": "https://rickandmortyapi.com/api/character/avatar/27.jpeg",
-    "status": "alive",
+    "status": "Alive",
     "gender": "Male",
     "origin": { "name": "Unknown" },
     "location": { "name": "Citadel of Ricks" }

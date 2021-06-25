@@ -8,7 +8,7 @@ import "./statusIcon.css"
  * @param {*} props
  * @returns ReactElement
  */
-export default function StatusIcon({ status = "default" }) {
+export default function StatusIcon({ status = "unknown" }) {
   return (
     <span
       className={`status-icon ${status?.toLowerCase()}`}
@@ -21,5 +21,5 @@ StatusIcon.propTypes = {
   /**
    * sets the color of the status indicator
    */
-  status: PropTypes.oneOf(["default", "dead", "alive"]),
+  status: PropTypes.oneOf(["unknown", "Dead", "Alive"]),
 }
