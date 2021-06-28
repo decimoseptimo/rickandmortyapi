@@ -13,7 +13,7 @@ function setup() {
   })
 }
 
-it("Renders correctly (tests one random card only)", () => {
+it("Renders index page (tests one random card only)", () => {
   cy.visit("/")
   setup()
 
@@ -36,7 +36,75 @@ it("Renders correctly (tests one random card only)", () => {
   })
 })
 
-it("Creates character", () => {
+it("Renders create page", () => {
+  cy.visit(`/create`)
+
+  // has page header
+  cy.findByRole("heading", {
+    name: /Create Character/i,
+  }).should("exist")
+
+  // has all form fields
+  cy.findByLabelText(/name/i).should("be.empty")
+  cy.findByLabelText(/image/i).should("be.empty")
+  cy.findByLabelText(/status/i).should("be.empty")
+  cy.findByLabelText(/gender/i).should("be.empty")
+  cy.findByLabelText(/origin/i).should("be.empty")
+  cy.findByLabelText(/location/i).should("be.empty")
+
+  // has action buttons
+  cy.findByRole("button", { name: /cancel/i }).should("exist")
+  cy.findByRole("button", { name: /save/i }).should("exist")
+})
+
+it("Renders update page", () => {
+  // load sample data. This item must exist on the fetched data [i.e. /src/state/state/fetchData(page=2)]
+  // In this case (id=27) exists at: https://rickandmortyapi.com/api/character/?page=2
+  cy.fixture("character").then(({ real: character }) => {
+    cy.visit(`/update/?id=${character.id}`)
+
+    // has page header
+    cy.findByRole("heading", {
+      name: `Update Character #${character.id}`,
+    }).should("exist")
+
+    // has all form fields
+    cy.findByLabelText(/name/i).should("have.value", character.name)
+    cy.findByLabelText(/image/i).should("have.value", character.image)
+    cy.findByLabelText(/status/i).should("have.value", character.status)
+    cy.findByLabelText(/gender/i).should("have.value", character.gender)
+    cy.findByLabelText(/origin/i).should("have.value", character.origin.name)
+    cy.findByLabelText(/location/i).should(
+      "have.value",
+      character.location.name
+    )
+
+    // has action buttons
+    cy.findByRole("button", { name: /cancel/i }).should("exist")
+    cy.findByRole("button", { name: /save/i }).should("exist")
+  })
+})
+
+it("Renders delete page", () => {
+  // load sample data. This item must exist on the fetched data [i.e. /src/state/state/fetchData(page=2)]
+  // In this case (id=27) exists at: https://rickandmortyapi.com/api/character/?page=2
+  cy.fixture("character").then(({ real: character }) => {
+    cy.visit(`/delete/?id=${character.id}`)
+
+    // has page header
+    cy.findByRole("heading", {
+      name: `Delete Character #${character.id}`,
+    }).should("exist")
+
+    cy.findByText(`Do you want to delete "${character.name}"?`).should("exist")
+
+    // has action buttons
+    cy.findByRole("button", { name: /no/i }).should("exist")
+    cy.findByRole("button", { name: /yes/i }).should("exist")
+  })
+})
+
+it("Creates character (from modal)", () => {
   cy.visit("/")
   setup()
 
@@ -45,14 +113,16 @@ it("Creates character", () => {
   cy.url().should("include", "create")
 
   // load sample data
-  cy.fixture("character").then(character => {
+  cy.fixture("character").then(({ machine: character }) => {
     // fill form
     cy.findByRole("textbox", { name: /name/i }).type(character.name)
     cy.findByRole("textbox", { name: /image/i }).type(character.image)
     cy.findByRole("textbox", { name: /status/i }).type(character.status)
     cy.findByRole("textbox", { name: /gender/i }).type(character.gender)
-    cy.findByRole("textbox", { name: /origin/i }).type(character.origin)
-    cy.findByRole("textbox", { name: /location/i }).type(character.location)
+    cy.findByRole("textbox", { name: /origin/i }).type(character.origin.name)
+    cy.findByRole("textbox", { name: /location/i }).type(
+      character.location.name
+    )
   })
 
   // submit form
@@ -67,7 +137,7 @@ it("Creates character", () => {
   })
 })
 
-it("Updates character", () => {
+it("Updates character (from modal)", () => {
   cy.visit("/")
   setup()
 
@@ -78,11 +148,10 @@ it("Updates character", () => {
   cy.url().should("include", "update")
 
   // load sample data
-  cy.fixture("character").then(character => {
+  cy.fixture("character").then(({ machine: character }) => {
     // a modal opens, says 'update character'
     cy.findByRole("dialog").within(() => {
       cy.findByRole("heading", { name: /update character/i }).should("exist")
-      cy.log(character.name)
       // update all fields with new values
       cy.findByRole("textbox", { name: /name/i }).clear().type(character.name)
       cy.findByRole("textbox", { name: /image/i }).clear().type(character.image)
@@ -94,10 +163,10 @@ it("Updates character", () => {
         .type(character.gender)
       cy.findByRole("textbox", { name: /origin/i })
         .clear()
-        .type(character.origin)
+        .type(character.origin.name)
       cy.findByRole("textbox", { name: /location/i })
         .clear()
-        .type(character.location)
+        .type(character.location.name)
     })
     // submit
     cy.findAllByRole("button", { name: /save/i }).click()
@@ -108,8 +177,11 @@ it("Updates character", () => {
       cy.findByTestId("x-from-y")
         .should("contain.text", character.status)
         .should("contain.text", character.gender)
-        .should("contain.text", character.origin)
-      cy.findByTestId("last-seen").should("contain.text", character.location)
+        .should("contain.text", character.origin.name)
+      cy.findByTestId("last-seen").should(
+        "contain.text",
+        character.location.name
+      )
     })
   })
 
@@ -119,7 +191,7 @@ it("Updates character", () => {
   })
 })
 
-it("Deletes character", function () {
+it("Deletes character (from modal)", function () {
   cy.visit("/")
   setup()
 
@@ -145,7 +217,7 @@ it("Deletes character", function () {
   })
 })
 
-it("Reload characters & renders correctly (tests one random card only)", () => {
+it("Reload characters & renders index page (tests one random card only)", () => {
   // RELOAD CHARACTERS
   cy.visit("/")
   setup()
@@ -159,36 +231,42 @@ it("Reload characters & renders correctly (tests one random card only)", () => {
   // click reload
   cy.findByRole("button", { name: "Reload character button" }).click()
   // is loading
-  cy.findByRole("button", { name: "Reload character button isLoading" }).then(() => {
-    // has loaded
-    cy.findByRole("button", { name: "Reload character button" }).then(() => {
-      // chosen card should no longer exist (we actually test for its inner heading)
-      cy.get("@chosenCardHeading").then(chosenCardHeading => {
-        cy.findByRole("heading", { name: chosenCardHeading }).should(
-          "not.exist"
+  cy.findByRole("button", { name: "Reload character button isLoading" }).then(
+    () => {
+      // has loaded
+      cy.findByRole("button", { name: "Reload character button" }).then(() => {
+        // chosen card should no longer exist (we actually test for its inner heading)
+        cy.get("@chosenCardHeading").then(chosenCardHeading => {
+          cy.findByRole("heading", { name: chosenCardHeading }).should(
+            "not.exist"
+          )
+        })
+
+        // RENDERS CORRECTLY
+        setup()
+
+        // has page header
+        cy.findByRole("heading", { name: /Rick and Morty/i }).should("exist")
+
+        // has add/reload buttons
+        cy.findByRole("button", { name: "Add character button" }).should(
+          "exist"
         )
-      })
+        cy.findByRole("button", { name: "Reload character button" }).should(
+          "exist"
+        )
 
-      // RENDERS CORRECTLY
-      setup()
-
-      // has page header
-      cy.findByRole("heading", { name: /Rick and Morty/i }).should("exist")
-    
-      // has add/reload buttons
-      cy.findByRole("button", { name: "Add character button" }).should("exist")
-      cy.findByRole("button", { name: "Reload character button" }).should("exist")
-    
-      // Get chosen card, and check it's got a minimum set of DOM objects.
-      // This will also ensure there's at least 1 card present
-      cy.get("@chosenCard").within(() => {
-        cy.findByRole("img").should("exist")
-        cy.findByRole("heading").should("not.be.empty")
-        cy.findByTestId("x-from-y").should("not.be.empty")
-        cy.findByTestId("last-seen").should("not.be.empty")
-        cy.findByRole("button", { name: /update character/i }).should("exist")
-        cy.findByRole("button", { name: /delete character/i }).should("exist")
+        // Get chosen card, and check it's got a minimum set of DOM objects.
+        // This will also ensure there's at least 1 card present
+        cy.get("@chosenCard").within(() => {
+          cy.findByRole("img").should("exist")
+          cy.findByRole("heading").should("not.be.empty")
+          cy.findByTestId("x-from-y").should("not.be.empty")
+          cy.findByTestId("last-seen").should("not.be.empty")
+          cy.findByRole("button", { name: /update character/i }).should("exist")
+          cy.findByRole("button", { name: /delete character/i }).should("exist")
+        })
       })
-    })
-  })
+    }
+  )
 })
