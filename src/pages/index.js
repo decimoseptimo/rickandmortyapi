@@ -8,12 +8,9 @@ import SEO from "../components/seo"
 import AddButton from "../components/ui/addButton"
 import ReloadButton from "../components/reloadButton"
 import { CharacterView } from "../components/character"
-import { fetchData } from "../state/state"
 
-const IndexPage = ({ data, fetchData }) => {
-  const characterCards = data.map(i => (
-    <CharacterView data={i} key={i.id} />
-  ))
+const IndexPage = ({ items }) => {
+  const characterCards = items.map(i => <CharacterView data={i} key={i.id} />)
 
   const loadingCards = (
     <>
@@ -33,14 +30,10 @@ const IndexPage = ({ data, fetchData }) => {
     </>
   )
 
-  React.useEffect(() => {
-    fetchData()
-  }, [])
-
   return (
     <Layout>
       <SEO title="Home" />
-      {data.length ? (
+      {items.length ? (
         <SimpleGrid columns={[1, 2, 3]} spacing={10}>
           {characterCards}
         </SimpleGrid>
@@ -63,15 +56,7 @@ const IndexPage = ({ data, fetchData }) => {
 }
 
 function mapState(state) {
-  return { data: state.itemsReducer }
+  return { items: state.itemsReducer }
 }
 
-function mapDispatch(dispatch) {
-  return {
-    fetchData() {
-      dispatch(fetchData())
-    },
-  }
-}
-
-export default connect(mapState, mapDispatch)(IndexPage)
+export default connect(mapState)(IndexPage)

@@ -17,7 +17,7 @@ it("renders correctly", () => {
   // X Y from Z
   expect(
     screen.getByText(
-      `${data.status} ${data.gender.toLowerCase()} from ${data.origin.name}`
+      `${data.status} ${data.gender} from ${data.origin.name}`
     )
   ).toBeInTheDocument()
   // last seen
