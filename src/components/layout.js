@@ -8,11 +8,13 @@
 import * as React from "react"
 import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
+import { connect } from "react-redux"
 
 import Header from "./header"
 import "./layout.css"
+import { fetchData } from "../state/state"
 
-const Layout = ({ children }) => {
+const Layout = ({ children, fetchData }) => {
   const data = useStaticQuery(graphql`
     query {
       site {
@@ -22,6 +24,10 @@ const Layout = ({ children }) => {
       }
     }
   `)
+
+  React.useEffect(() => {
+    fetchData()
+  }, [])
 
   return (
     <>
@@ -55,4 +61,12 @@ Layout.propTypes = {
   children: PropTypes.node.isRequired,
 }
 
-export default Layout
+function mapDispatch(dispatch) {
+  return {
+    fetchData() {
+      dispatch(fetchData())
+    },
+  }
+}
+
+export default connect(null, mapDispatch)(Layout)
