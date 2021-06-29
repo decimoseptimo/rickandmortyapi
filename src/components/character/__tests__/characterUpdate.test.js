@@ -3,22 +3,15 @@ import { render, screen } from "@testing-library/react"
 import "@testing-library/jest-dom/extend-expect"
 
 import CharacterUpdate from "../characterUpdate"
+import CharacterData from "../../../fixtures/character.json"
 
-const data = {
-  id: "test id",
-  name: "test name",
-  image: "test image",
-  status: "test status",
-  gender: "test gender",
-  origin: { name: "test origin" },
-  location: { name: "test location" },
-}
+const data = CharacterData.real
 
 it("renders correctly on truthy data.id", () => {
   render(
     <CharacterUpdate
       data={data}
-      routeId={null}
+      routeId={data.id}
       onSubmit={_ => {}}
       onClose={_ => {}}
     />
@@ -51,13 +44,14 @@ it("renders correctly on truthy data.id", () => {
 })
 
 it("renders alert on falsy data.id", () => {
-  const data = {
-    id: false,
+  const data2 = {
+    ...data,
+    id: ""
   }
   render(
     <CharacterUpdate
-      data={data}
-      routeId={null}
+      data={data2}
+      routeId={data2.id}
       onSubmit={_ => {}}
       onClose={_ => {}}
     />
