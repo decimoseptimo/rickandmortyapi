@@ -10,6 +10,7 @@ import {
   Image,
 } from "@chakra-ui/react"
 import { EditIcon, DeleteIcon } from "@chakra-ui/icons"
+import PropTypes from "prop-types"
 
 import StatusIcon from "../ui/statusIcon"
 
@@ -81,4 +82,8 @@ export default function CharacterView({ data }) {
       </Box>
     </Box>
   )
+}
+
+CharacterView.propTypes = {
+  data: PropTypes.object.isRequired,
 }

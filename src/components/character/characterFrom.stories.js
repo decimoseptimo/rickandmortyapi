@@ -6,7 +6,7 @@ import CharacterData from "../../fixtures/character.json"
 const Template = args => <CharacterForm {...args} />
 
 export default {
-  title: "CharacterForm",
+  title: "Character/CharacterForm",
   component: CharacterForm,
 }
 

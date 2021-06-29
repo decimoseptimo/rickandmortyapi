@@ -5,7 +5,7 @@ import ReloadButton from "./reloadButton"
 const Template = args => <ReloadButton {...args} />
 
 export default {
-  title: "ReloadButton",
+  title: "UI/ReloadButton",
   component: ReloadButton,
 }
 

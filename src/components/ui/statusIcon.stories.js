@@ -5,12 +5,12 @@ import StatusIcon from "./statusIcon"
 const Template = args => <StatusIcon {...args} />
 
 export default {
-  title: "StatusIcon",
+  title: "UI/StatusIcon",
   component: StatusIcon,
 }
 
 export const Default = Template.bind({})
-// Default.args = {}
+Default.storyName = "Default (unknown)"
 
 export const Dead = Template.bind({})
 Dead.args = { status: "dead" }

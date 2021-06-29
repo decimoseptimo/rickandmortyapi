@@ -5,7 +5,7 @@ import AddButton from "./addButton"
 const Template = args => <AddButton {...args} />
 
 export default {
-  title: "AddButton",
+  title: "UI/AddButton",
   component: AddButton,
 }
 

@@ -121,9 +121,7 @@ export default function CharacterForm({ data = null, onSubmit, onClose }) {
 }
 
 CharacterForm.propTypes = {
-  /**
-   * Optional click handler
-   */
+  data: PropTypes.object,
   onSubmit: PropTypes.func,
   onClose: PropTypes.func,
 }

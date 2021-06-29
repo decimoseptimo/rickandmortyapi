@@ -7,7 +7,7 @@ export default function ReloadButton({
   isLoading = false,
   "aria-label": ariaLabel = "Reload button",
   "aria-label-loading": ariaLabelLoading = "Reload button isLoading",
-  ...props
+  onClick = null,
 }) {
   return (
     <IconButton
@@ -15,7 +15,7 @@ export default function ReloadButton({
       aria-label={isLoading ? ariaLabelLoading : ariaLabel}
       isRound={true}
       color="#999"
-      {...props}
+      onClick={onClick}
     />
   )
 }
