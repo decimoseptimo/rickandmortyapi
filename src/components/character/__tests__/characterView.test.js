@@ -16,9 +16,7 @@ it("renders correctly", () => {
   expect(screen.getByRole("heading", { name: data.name })).toBeInTheDocument()
   // X Y from Z
   expect(
-    screen.getByText(
-      `${data.status} ${data.gender} from ${data.origin.name}`
-    )
+    screen.getByText(`${data.status} ${data.gender} from ${data.origin.name}`)
   ).toBeInTheDocument()
   // last seen
   expect(

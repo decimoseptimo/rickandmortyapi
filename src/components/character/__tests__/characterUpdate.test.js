@@ -46,7 +46,7 @@ it("renders correctly on truthy data.id", () => {
 it("renders alert on falsy data.id", () => {
   const data2 = {
     ...data,
-    id: ""
+    id: "",
   }
   render(
     <CharacterUpdate
